@@ -795,9 +795,6 @@ integration = HealthModelBuilder.create_from_env()
 ```
 
 ---
-## Health Model Graph
-<img width="894" height="463" alt="image" src="https://github.com/user-attachments/assets/82e6410a-65cd-477f-a53c-549bd779643e" />
-
 ## Example Output
 
 Here's what you'll see when running `python run.py`:
@@ -867,37 +864,26 @@ Step 2: Testing Azure authentication...
 
 ✅ All operations completed successfully!
 ```
-
 ---
 
 ## Contributing
-
 To extend or modify the integration:
-
 1. **Add new API methods:** Edit `src/api/health_state_client.py`
 2. **Add integration features:** Edit `src/integration.py`
 3. **Update configuration:** Modify `src/config/env_loader.py`
 4. **Add examples:** Create scripts in root or `examples/` directory
-
 ---
 
 ## License
-
 See LICENSE file for details.
-
 ---
 
 ## Support
-
 For questions or issues:
 1. Check this documentation
 2. Run `python run.py` to validate your setup
 3. Review the example scripts (demo.py, query_health_model.py)
 4. Check Azure Health Models documentation
-
 ---
-
-*Last Updated: January 15, 2026*
-*Version: 1.0.0*
 
 
