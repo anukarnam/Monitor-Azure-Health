@@ -697,17 +697,6 @@ https://management.azure.com/
    - ✓ Health aggregation and reporting
    - ✓ Color-coded status (green/amber/red)
 
-### 📊 Example Health Model Data
-
-**Entities discovered from sre-demo-hm:**
-
-| Entity | Type | Status |
-|--------|------|--------|
-| sre-demo-app-jv12345 | Microsoft.Web/sites | 🟢 Healthy |
-| sre-demo-app-jv12345-plan | Microsoft.Web/serverFarms | 🟡 Degraded |
-| staging | Microsoft.Web/sites/slots | ⚪ Unknown |
-| sre-demo-hm | System_HealthModelRoot | 🟢 Healthy |
-
 ### 🔧 Health Model Configuration
 
 **Health Model:** sre-demo-hm
