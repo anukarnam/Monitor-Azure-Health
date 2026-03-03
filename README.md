@@ -15,7 +15,6 @@ Query and monitor Azure Health Models in real-time using Python.
 ---
 
 ## Quick Start
-
 Get started in 2 minutes:
 
 ### Prerequisites
@@ -24,7 +23,6 @@ Get started in 2 minutes:
 - Access to Azure subscription with a health model
 
 ### Installation
-
 ```bash
 # Step 1: Copy the environment template and configure with your Azure values
 cp .env.template .env
@@ -38,7 +36,6 @@ python run.py
 ```
 
 ### One-Command Setup & Query
-
 The fastest way to validate and query your health model:
 
 ```bash
@@ -104,7 +101,6 @@ AZURE_AUTH_TOKEN=
 **Note:** If the `.env` file doesn't exist, the system will automatically create a template file for you. Simply edit it with your Azure values.
 
 ### Required Environment Variables
-
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `AZURE_SUBSCRIPTION_ID` | ✅ Yes | Azure subscription ID |
@@ -114,7 +110,6 @@ AZURE_AUTH_TOKEN=
 | `AZURE_AUTH_TOKEN` | ❌ No | Pre-configured token (fetched from Azure CLI if not set) |
 
 ### Verification
-
 Run the all-in-one script to validate and query:
 
 ```bash
@@ -137,7 +132,6 @@ Expected output:
 
 
 ## Azure REST APIs Used
-
 This integration uses the following Azure Management REST APIs:
 
 ### Base API Configuration
@@ -148,7 +142,6 @@ This integration uses the following Azure Management REST APIs:
 - **Base URL**: `https://management.azure.com`
 
 ### Primary Endpoints
-
 #### 1. Get All Entities Health (Main API)
 ```
 GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.CloudHealth/healthmodels/{healthModelName}/entities?api-version=2025-05-01-preview
@@ -180,11 +173,9 @@ GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Mic
 ```
 
 **Purpose**: Retrieves historical health states over time
-
 **Used by**: `get_entity_health_timeline()` - Available but not used in main demo
 
 ### Authentication
-
 The integration uses Azure CLI for authentication:
 
 ```bash
@@ -295,7 +286,7 @@ entities = integration.get_all_entities_health()
 Get health state of a specific entity.
 
 ```python
-health = integration.get_entity_health("22b8c8ff-da68-affb-1ce4-6c6575879a06")
+health = integration.get_entity_health("your-subscription-id")
 ```
 
 **Parameters:**
@@ -385,14 +376,10 @@ all_entities = client.get_all_entities_health()
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CloudHealth/healthmodels/{healthModelName}/entities/{entityName}
 ```
 
-**API Version:** `2025-05-01-preview`
-
 **Authentication:** Bearer token (Azure Management API)
-
 ---
 
 ## Code Examples
-
 ### Example 1: Get All Entity Health States
 
 ```python
@@ -510,13 +497,10 @@ with HealthModelBuilder.create_from_env() as integration:
     print(f"Workload: {health['state_color']}")
 # Auto-cleanup on exit
 ```
-
 ---
 
 ## Configuration
-
 ### Project Structure
-
 ```
 OD-HealthModel/
 ├── .env                          # Configuration (DO NOT COMMIT)
@@ -543,7 +527,6 @@ OD-HealthModel/
 ```
 
 ### Dependencies
-
 **requirements.txt:**
 ```
 requests>=2.31.0
@@ -556,7 +539,6 @@ pip install -r requirements.txt
 ```
 
 ### Security
-
 **Important:** Never commit your `.env` file!
 
 The `.gitignore` is configured to exclude:
@@ -566,7 +548,6 @@ The `.gitignore` is configured to exclude:
 - Build artifacts
 
 ### Authentication
-
 The integration uses Azure CLI for authentication by default:
 
 1. Ensure Azure CLI is installed: `az --version`
@@ -577,13 +558,10 @@ Alternatively, provide a pre-configured token in `.env`:
 ```ini
 AZURE_AUTH_TOKEN=your-bearer-token
 ```
-
 ---
 
 ## Architecture
-
 ### Component Overview
-
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    User Application                      │
@@ -609,7 +587,6 @@ AZURE_AUTH_TOKEN=your-bearer-token
 ```
 
 ### Key Components
-
 #### 1. HealthStateClient
 - Low-level REST API client
 - Handles authentication
@@ -633,7 +610,6 @@ AZURE_AUTH_TOKEN=your-bearer-token
 - Set thresholds and rules
 
 ### Data Flow
-
 ```
 1. User calls integration.get_all_entities_health()
                     ↓
@@ -651,7 +627,6 @@ AZURE_AUTH_TOKEN=your-bearer-token
 ```
 
 ### API Endpoint Structure
-
 **Management Plane (used by this integration):**
 ```
 https://management.azure.com/
@@ -664,17 +639,12 @@ https://management.azure.com/
 ```
 
 **Authentication:** Azure Management API bearer token
-
 **HTTP Method:** GET
-
 **Response Format:** JSON
-
 ---
 
 ## Current Status
-
 ### ✅ What's Working
-
 1. **REST API Integration**
    - ✓ Query all entities in health model
    - ✓ Query specific entity by ID
@@ -721,7 +691,6 @@ https://management.azure.com/
 - **.NET SDK:** Azure.ResourceManager.CloudHealth v1.0.0-beta.1
 
 ### 🎯 Next Steps
-
 1. **Explore your health model in Azure Portal**
    - Navigate to portal.azure.com
    - Go to Resource Groups → sre-demo-rg
@@ -736,13 +705,10 @@ https://management.azure.com/
    - Schedule health checks
    - Integrate with monitoring systems
    - Create dashboards and reports
-
 ---
 
 ## Troubleshooting
-
 ### Common Issues
-
 #### Issue: "Environment validation failed"
 **Solution:** Check that all required variables are set in `.env`:
 - AZURE_SUBSCRIPTION_ID
@@ -772,9 +738,7 @@ pip install -r requirements.txt
 The system automatically creates a template `.env` file. Edit it with your Azure configuration values.
 
 ### Debug Mode
-
 Enable detailed logging:
-
 ```python
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -785,7 +749,6 @@ integration = HealthModelBuilder.create_from_env()
 
 ---
 ## Example Output
-
 Here's what you'll see when running `python run.py`:
 
 ```
@@ -821,7 +784,7 @@ Step 2: Testing Azure authentication...
 📊 All Entities Health Status:
   Total Entities: 4
 
-  🟢 sre-demo-app-jv12345
+  🟢 sre-demo-app
      State: Healthy (GREEN)
      Type: Microsoft.Web/sites
 
@@ -829,7 +792,7 @@ Step 2: Testing Azure authentication...
      State: Unknown (GRAY)
      Type: Microsoft.Web/sites/slots
 
-  🟡 sre-demo-app-jv12345-plan
+  🟡 sre-demo-app
      State: Degraded (AMBER)
      Type: Microsoft.Web/serverFarms
 
